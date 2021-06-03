@@ -1,0 +1,47 @@
+pull:
+  rules: 
+    - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == "master"'
+  image: nitrokey/ci-pull:latest
+  tags:
+    - docker
+  stage: pull-github
+  before_script:
+    - apt-get update -y
+    - ./ci-scripts/copy_common_scripts_key.sh
+    - export SCRIPTS_DIR=$(mktemp -d)
+    - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
+  script:
+    - chmod +x  $SCRIPTS_DIR/ci-scripts/pull.sh
+    - $SCRIPTS_DIR/ci-scripts/pull.sh $REPO_USER $REPO_NAME
+     
+upload-nightly:
+  stage: deploy
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+  tags:
+    - docker
+  image: nitrokey/ci-nightly-upload:latest
+  before_script:
+    - apt-get update -y
+    - ./ci-scripts/copy_common_scripts_key.sh
+    - export SCRIPTS_DIR=$(mktemp -d)
+    - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
+  script:
+    - chmod +x $SCRIPTS_DIR/ci-scripts/nightly_upload.sh
+    - $SCRIPTS_DIR/ci-scripts/nightly_upload.sh 
+
+publish:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  image: nitrokey/ci-publish-git:latest
+  tags:
+    - docker
+  stage: deploy
+  before_script:
+    - apt-get update -y
+    - ./ci-scripts/copy_common_scripts_key.sh
+    - export SCRIPTS_DIR=$(mktemp -d)
+    - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
+  script:
+    - chmod +x $SCRIPTS_DIR/ci-scripts/release.sh
+    - $SCRIPTS_DIR/ci-scripts/release.sh
