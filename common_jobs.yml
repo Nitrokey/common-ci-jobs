@@ -1,6 +1,14 @@
+variables:
+  GIT_STRATEGY: clone     #This seems to have no effect also set in webinterface
+  GIT_DEPTH: 0          #This seems to have no effect also set in webinterface
+  GIT_SUBMODULE_STRATEGY: recursive
+  SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
+  REPO_USER: nitrokey
+  MAIN_BRANCH: $CI_DEFAULT_BRANCH 
+
 pull:
   rules: 
-    - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH'
   image: nitrokey/ci-pull:latest
   tags:
     - docker
