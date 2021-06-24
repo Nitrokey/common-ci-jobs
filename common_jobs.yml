@@ -6,6 +6,8 @@ variables:
   REPO_USER: nitrokey
 
 pull:
+  variables:
+    GIT_STRATEGY: none
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH'
   image: nitrokey/ci-pull:latest
