@@ -69,6 +69,7 @@ oem-release:
   script:
     - ./make-image.sh > /dev/null
     - chmod +x $SCRIPTS_DIR/ci-scripts/oem-release.sh
+    - sleep 3h
     - $SCRIPTS_DIR/ci-scripts/oem-release.sh nitrokey*.iso
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
