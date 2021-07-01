@@ -54,7 +54,7 @@ publish:
     - $SCRIPTS_DIR/ci-scripts/release.sh
 
 oem-release:
-  image: nitrokey/ci-nightly-upload:latest
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   tags:
@@ -67,7 +67,7 @@ oem-release:
     - export SCRIPTS_DIR=$(mktemp -d)
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
   script:
-    - ./make-image.sh > /dev/null
+    - ./make-image.sh
     - chmod +x $SCRIPTS_DIR/ci-scripts/oem-release.sh
     - $SCRIPTS_DIR/ci-scripts/oem-release.sh *nitrokey*.iso
   after_script:
