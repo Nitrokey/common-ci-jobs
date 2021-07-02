@@ -61,7 +61,7 @@ oem-release:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   tags:
     - docker
-  stage: oem-release
+  stage: deploy
   before_script:
     - ./ci-scripts/copy_common_scripts_key.sh
     - export SCRIPTS_DIR=$(mktemp -d)
