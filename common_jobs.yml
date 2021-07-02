@@ -4,7 +4,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
   REPO_USER: nitrokey
-  ENABLE_OEM: false
+  ENABLE_OEM: "false"
 
 pull:
   rules: 
@@ -59,7 +59,7 @@ oem-release:
   image: ghcr.io/lennardboediger/ci-oem-release:latest
   # image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && ENABLE_OEM == true'
+    - if: '$CI_PIPELINE_SOURCE == "push" && ENABLE_OEM == "true"'
   tags:
     - docker
   stage: deploy
