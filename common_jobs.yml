@@ -67,6 +67,7 @@ oem-release:
     #- apt-get install -y xorriso wget
     - ./ci-scripts/copy_common_scripts_key.sh
     - export SCRIPTS_DIR=$(mktemp -d)
+    - sleep 3h
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
   script:
     - ./make-image.sh
