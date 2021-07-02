@@ -64,6 +64,7 @@ oem-release:
   before_script:
     - apt-get update
     - apt-get install -y xorriso wget
+    - sleep 3h
     - ./ci-scripts/copy_common_scripts_key.sh
     - export SCRIPTS_DIR=$(mktemp -d)
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
