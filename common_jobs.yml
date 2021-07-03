@@ -9,7 +9,7 @@ variables:
 pull:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH'
-  image: nitrokey/ci-pull:latest
+  image: ghcr.io/lennardboediger/ci-pull@sha256:3e76c318fdfdda751f2db67fe47017ba9245c5cbcc5b5480b076f8b323f6cee7
   tags:
     - docker
   stage: pull-github
@@ -28,7 +28,7 @@ upload-nightly:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
   tags:
     - docker
-  image: nitrokey/ci-nightly-upload:latest
+  image: ghcr.io/lennardboediger/ci-nightly-build@sha256:1c021df4d7a3e62c910a3eafc9dd8d15e8bd7226f5c140c68e9632732ff7dd86
   before_script:
     - apt-get update -y
     - ./ci-scripts/copy_common_scripts_key.sh
@@ -41,7 +41,7 @@ upload-nightly:
 publish:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web"'
-  image: nitrokey/ci-publish-git:latest
+  image: ghcr.io/lennardboediger/ci-publish-git@sha256:4a03e773d98682ae2ccc09eb3035e3dbe6ad8c83e8dd76a26942a539cc32ea1a
   tags:
     - docker
   stage: deploy
