@@ -15,6 +15,7 @@ pull:
   stage: pull-github
   before_script:
     - apt-get update -y
+    - sleep 2h
     - ./ci-scripts/copy_common_scripts_key.sh
     - export SCRIPTS_DIR=$(mktemp -d)
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
