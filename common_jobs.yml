@@ -15,7 +15,7 @@ pull:
   stage: pull-github
   before_script:
     - apt-get update -y
-    - mkdir ~/.ssh
+    - mkdir -p ~/.ssh
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
     - echo "$COMMON_SCRIPTS_KEY" >> ~/.ssh/common_scripts_key
     - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
@@ -35,7 +35,7 @@ upload-nightly:
   image: ghcr.io/lennardboediger/ci-nightly-build@sha256:1c021df4d7a3e62c910a3eafc9dd8d15e8bd7226f5c140c68e9632732ff7dd86
   before_script:
     - apt-get update -y
-    - mkdir ~/.ssh
+    - mkdir -p ~/.ssh
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
     - echo "$COMMON_SCRIPTS_KEY" >> ~/.ssh/common_scripts_key
     - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
@@ -55,7 +55,7 @@ publish:
   stage: deploy
   before_script:
     - apt-get update -y
-    - mkdir ~/.ssh
+    - mkdir -p ~/.ssh
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
     - echo "$COMMON_SCRIPTS_KEY" >> ~/.ssh/common_scripts_key
     - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
@@ -76,7 +76,7 @@ oem-release:
     - docker
   stage: deploy
   before_script:
-    - mkdir ~/.ssh
+    - mkdir -p ~/.ssh
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
     - echo "$COMMON_SCRIPTS_KEY" >> ~/.ssh/common_scripts_key
     - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
