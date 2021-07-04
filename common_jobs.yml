@@ -15,6 +15,7 @@ pull:
   stage: pull-github
   before_script:
     - apt-get update -y
+    #new line test
     - mkdir -p ~/.ssh
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
     - echo "$COMMON_SCRIPTS_KEY" >> ~/.ssh/common_scripts_key
