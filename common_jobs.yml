@@ -9,7 +9,7 @@ variables:
 pull:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH'
-  image: ghcr.io/lennardboediger/ci-pull@sha256:3e76c318fdfdda751f2db67fe47017ba9245c5cbcc5b5480b076f8b323f6cee7
+  image: ghcr.io/lennardboediger/ci-pull@sha256:a121903e59be52dfced9fb333b6d8f18af69310e9824e78b26aa1435914f6bf7
   tags:
     - docker
   stage: pull-github
@@ -49,7 +49,7 @@ upload-nightly:
 publish:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web"'
-  image: ghcr.io/lennardboediger/ci-publish-git@sha256:4a03e773d98682ae2ccc09eb3035e3dbe6ad8c83e8dd76a26942a539cc32ea1a
+  image: ghcr.io/lennardboediger/ci-publish-git@sha256:a7b49ba1decfa5f4b62fc5b94e7f0a3ed2b126888fba30f6cafba76f3710068c
   tags:
     - docker
   stage: deploy
