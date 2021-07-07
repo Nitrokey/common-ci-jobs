@@ -79,6 +79,8 @@ oem-release:
     - chmod 600 ~/.ssh/common_scripts_key
     - export SCRIPTS_DIR=$(mktemp -d)
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
+    - apt-get update
+    - apt-get -y install make
   script:
     - ./make-image.sh
     - chmod +x $SCRIPTS_DIR/ci-scripts/oem-release.sh
