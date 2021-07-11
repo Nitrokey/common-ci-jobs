@@ -4,7 +4,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
   REPO_USER: nitrokey
-  ENABLE_OEM: "false"
+  UPLOAD_FILES: "false"
 
 pull:
   rules: 
