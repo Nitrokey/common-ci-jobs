@@ -63,12 +63,12 @@ publish:
     - chmod +x $SCRIPTS_DIR/ci-scripts/release.sh
     - $SCRIPTS_DIR/ci-scripts/release.sh
 
-oem-release:
+upload-files:
   # image: nitrokey/ci-nightly-upload:latest
   image: ghcr.io/lennardboediger/ci-oem-release:latest
   # image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $ENABLE_OEM == "true"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $UPLOAD_FILES == "true"'
   tags:
     - docker
   stage: deploy
@@ -79,11 +79,8 @@ oem-release:
     - chmod 600 ~/.ssh/common_scripts_key
     - export SCRIPTS_DIR=$(mktemp -d)
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
-    - apt-get update
-    - apt-get -y install make
   script:
-    - ./make-image.sh
     - chmod +x $SCRIPTS_DIR/ci-scripts/oem-release.sh
-    - $SCRIPTS_DIR/ci-scripts/oem-release.sh *nitrokey*.iso
+    - $SCRIPTS_DIR/ci-scripts/oem-release.sh
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
