@@ -8,7 +8,6 @@ variables:
   COMMON_UPLOAD_NIGHTLY: "true"
   COMMON_GITHUB_RELEASE: "true"
   COMMON_UPLOAD_FILES: "false"
-  UPLOAD_FOLDER: "nitropc"
 
 pull:
   rules: 
