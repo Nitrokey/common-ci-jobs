@@ -9,7 +9,7 @@ variables:
   COMMON_GITHUB_RELEASE: "true"
   COMMON_UPLOAD_FILES: "false"
 
-pull:
+pull-new:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH && $COMMON_PULL == "true"'
   #image: ghcr.io/lennardboediger/ci-pull@sha256:a121903e59be52dfced9fb333b6d8f18af69310e9824e78b26aa1435914f6bf7
