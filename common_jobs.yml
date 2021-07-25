@@ -12,7 +12,8 @@ variables:
 pull:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH && $COMMON_PULL == "true"'
-  image: ghcr.io/lennardboediger/ci-pull@sha256:a121903e59be52dfced9fb333b6d8f18af69310e9824e78b26aa1435914f6bf7
+  #image: ghcr.io/lennardboediger/ci-pull@sha256:a121903e59be52dfced9fb333b6d8f18af69310e9824e78b26aa1435914f6bf7
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-pull@sha256:690c3150971ad82a602709616f4d6870cedf224a9a65a89f92c74c31a349d29a
   tags:
     - docker
   stage: pull-github
