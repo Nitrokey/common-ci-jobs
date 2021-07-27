@@ -21,7 +21,6 @@ pull-latest:
   stage: pull-github
   before_script:
     - apt-get update -y
-    - sleep 3h
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
     - echo "$COMMON_SCRIPTS_KEY" >> ~/.ssh/common_scripts_key
     - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
@@ -38,7 +37,8 @@ upload-nightly:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPLOAD_NIGHTLY == "true"'
   tags:
     - docker
-  image: ghcr.io/lennardboediger/ci-nightly-build@sha256:1c021df4d7a3e62c910a3eafc9dd8d15e8bd7226f5c140c68e9632732ff7dd86
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-nightly-build:latest
+  #image: ghcr.io/lennardboediger/ci-nightly-build@sha256:1c021df4d7a3e62c910a3eafc9dd8d15e8bd7226f5c140c68e9632732ff7dd86
   before_script:
     - apt-get update -y
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
@@ -54,7 +54,8 @@ upload-nightly:
 github-release:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web" && $COMMON_GITHUB_RELEASE == "true"'
-  image: ghcr.io/lennardboediger/ci-publish-git@sha256:a7b49ba1decfa5f4b62fc5b94e7f0a3ed2b126888fba30f6cafba76f3710068c
+  #image: ghcr.io/lennardboediger/ci-publish-git@sha256:a7b49ba1decfa5f4b62fc5b94e7f0a3ed2b126888fba30f6cafba76f3710068c
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-publish-git:latest
   tags:
     - docker
   stage: deploy
@@ -72,8 +73,8 @@ github-release:
 
 upload-files:
   # image: nitrokey/ci-nightly-upload:latest
-  image: ghcr.io/lennardboediger/ci-oem-release:latest
-  # image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release:latest
+  #image: ghcr.io/lennardboediger/ci-oem-release:latest
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $COMMON_UPLOAD_FILES == "true"'
   tags:
