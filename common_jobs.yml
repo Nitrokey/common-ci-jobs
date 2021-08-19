@@ -9,7 +9,7 @@ variables:
   COMMON_GITHUB_RELEASE: "true"
   COMMON_UPLOAD_FILES: "false"
 
-pull-latest:
+pull:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH && $COMMON_PULL == "true"'
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-pull@sha256:3279f9e108c9c3e77df9e496f37071f90d01c02d4266a000bad18ef37674142d
