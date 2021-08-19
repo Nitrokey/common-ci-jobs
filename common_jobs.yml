@@ -10,11 +10,9 @@ variables:
   COMMON_UPLOAD_FILES: "false"
 
 pull:
-  #NEW line gogoggo
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH && $COMMON_PULL == "true"'
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-pull@sha256:3279f9e108c9c3e77df9e496f37071f90d01c02d4266a000bad18ef37674142d
-  #@sha256:3e76c318fdfdda751f2db67fe47017ba9245c5cbcc5b5480b076f8b323f6cee7
   tags:
     - docker
   stage: pull-github
@@ -36,7 +34,7 @@ upload-nightly:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPLOAD_NIGHTLY == "true"'
   tags:
     - docker
-  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-nightly-build:latest
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-nightly-build@sha:bf0b3aedd711056ff793ae3bef82f90bd9dfd24bbd18337b26bfe8b7e8b87be3
   before_script:
     - apt-get update -y
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
@@ -52,7 +50,7 @@ upload-nightly:
 github-release:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web" && $COMMON_GITHUB_RELEASE == "true"'
-  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-publish-git:latest
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-publish-git@sha256:a9450ef18e7e8572ad9fe79a3ed4ea12e14df16949df72c8e4b2b90ff1819b45
   tags:
     - docker
   stage: deploy
@@ -69,8 +67,6 @@ github-release:
     - $SCRIPTS_DIR/ci-scripts/release.sh
 
 upload-files:
-  # image: nitrokey/ci-nightly-upload:latest
-  #image: ghcr.io/lennardboediger/ci-oem-release:latest
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release@sha256:7cf04f607158a6e2bc7db210c36edb87071f91e0df119c29f02df2112eb44ad1
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $COMMON_UPLOAD_FILES == "true"'
