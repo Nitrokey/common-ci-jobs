@@ -34,6 +34,7 @@ upload-nightly-ok:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPLOAD_NIGHTLY == "true"'
   tags:
     - docker
+      #new line
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-nightly-build@sha256:bf0b3aedd711056ff793ae3bef82f90bd9dfd24bbd18337b26bfe8b7e8b87be3
   before_script:
     - apt-get update -y
