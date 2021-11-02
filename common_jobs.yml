@@ -90,13 +90,13 @@ upload-files-sha:
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
 
-    update-docker:
-    tags:
+update-docker:
+  tags:
     - lxc
-    stage: .pre
-      rules:
+  stage: .pre
+  rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPDATE_DOCKER == "true"'
-    script:
-      - docker build -t registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME . 
-      - docker login registry.git.dotplex.com -u token -p $update_docker
-      - docker push registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME 
+  script:
+    - docker build -t registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME . 
+    - docker login registry.git.dotplex.com -u token -p $update_docker
+    - docker push registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME 
