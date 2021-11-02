@@ -8,7 +8,7 @@ variables:
   COMMON_UPLOAD_NIGHTLY: "true"
   COMMON_GITHUB_RELEASE: "true"
   COMMON_UPLOAD_FILES: "false"
-  COMMON_UPDATE_DOCKER: "false"
+  COMMON_UPDATE_DOCKER: "true"
 
 
 pull-sha:
