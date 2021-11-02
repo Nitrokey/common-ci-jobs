@@ -89,13 +89,13 @@ upload-files-sha:
     - $SCRIPTS_DIR/ci-scripts/oem-release.sh
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
-
+#fooooo
 update-docker:
   tags:
     - lxc
   stage: .pre
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPDATE_DOCKER == "true"'
+#  rules:
+#    - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPDATE_DOCKER == "true"'
   script:
     - docker build -t registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME . 
     - docker login registry.git.dotplex.com -u token -p $update_docker
