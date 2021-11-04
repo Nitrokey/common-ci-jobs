@@ -8,7 +8,7 @@ variables:
   COMMON_UPLOAD_NIGHTLY: "true"
   COMMON_GITHUB_RELEASE: "true"
   COMMON_UPLOAD_FILES: "false"
-  COMMON_UPDATE_DOCKER: "true"
+  COMMON_UPDATE_DOCKER: "false"
 
 
 pull-sha:
@@ -98,5 +98,5 @@ update-docker:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPDATE_DOCKER == "true"'
   script:
     - docker build -t registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME . 
-    - docker login registry.git.dotplex.com -u token -p $update_docker
+    - docker login registry.git.dotplex.com -u token -p $UPDATE_DOCKER
     - docker push registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME 
