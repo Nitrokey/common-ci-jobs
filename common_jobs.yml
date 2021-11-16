@@ -30,7 +30,7 @@ pull-sha:
     - chmod +x  $SCRIPTS_DIR/ci-scripts/pull.sh
     - $SCRIPTS_DIR/ci-scripts/pull.sh $REPO_USER $REPO_NAME
      
-upload-nightly-sha:
+upload-nightly:
   stage: deploy
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPLOAD_NIGHTLY == "true"'
@@ -72,7 +72,6 @@ github-release-sha:
     - $SCRIPTS_DIR/ci-scripts/release.sh
 
 upload-files-sha:
-  #new line
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release@sha256:7cf04f607158a6e2bc7db210c36edb87071f91e0df119c29f02df2112eb44ad1
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $COMMON_UPLOAD_FILES == "true"'
