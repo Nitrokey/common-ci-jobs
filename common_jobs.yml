@@ -48,6 +48,9 @@ upload-nightly-sha:
   script:
     - chmod +x $SCRIPTS_DIR/ci-scripts/nightly_upload.sh
     - $SCRIPTS_DIR/ci-scripts/nightly_upload.sh 
+  after_script:
+    - wget $nk_ci_bot_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
+
 
 github-release-sha:
   rules:
@@ -89,7 +92,6 @@ upload-files-sha:
     - $SCRIPTS_DIR/ci-scripts/oem-release.sh
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
-    - wget $nk_ci_bot_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
 #fooooo
 update-docker:
   tags:
