@@ -105,7 +105,7 @@ notify-matrixbot:
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-publish-git@sha256:a9450ef18e7e8572ad9fe79a3ed4ea12e14df16949df72c8e4b2b90ff1819b45
   tags:
     - docker
-  stages: .post
+  stage: .post
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"' 
       when: always
