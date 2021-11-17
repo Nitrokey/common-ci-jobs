@@ -39,7 +39,6 @@ upload-nightly:
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-nightly-build@sha256:bf0b3aedd711056ff793ae3bef82f90bd9dfd24bbd18337b26bfe8b7e8b87be3
   before_script:
     - apt-get update -y
-    - apt-get install -y wget
     - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
     - echo "$COMMON_SCRIPTS_KEY" >> ~/.ssh/common_scripts_key
     - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
@@ -49,8 +48,6 @@ upload-nightly:
   script:
     - chmod +x $SCRIPTS_DIR/ci-scripts/nightly_upload.sh
     - $SCRIPTS_DIR/ci-scripts/nightly_upload.sh 
-  after_script:
-    - wget $nk_ci_bot_server/matrix-ci-bot/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
 
 
 github-release-sha:
@@ -103,3 +100,16 @@ update-docker:
     - docker build -t registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME . 
     - docker login registry.git.dotplex.com -u token -p $UPDATE_DOCKER
     - docker push registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME 
+
+notify-matrixbot:
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-publish-git@sha256:a9450ef18e7e8572ad9fe79a3ed4ea12e14df16949df72c8e4b2b90ff1819b45
+  tags:
+    - docker
+  stages: .post
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"' 
+  script: 
+    - apt-get install -y wget
+    - wget $nk_ci_bot_server/matrix-ci-bot/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
+
+
