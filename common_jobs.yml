@@ -89,7 +89,6 @@ upload-files-sha:
     - $SCRIPTS_DIR/ci-scripts/oem-release.sh
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
-#fooooo
 update-docker:
   tags:
     - lxc
@@ -102,6 +101,7 @@ update-docker:
     - docker push registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME 
 
 notify-matrixbot:
+  #fooooo
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-publish-git@sha256:a9450ef18e7e8572ad9fe79a3ed4ea12e14df16949df72c8e4b2b90ff1819b45
   tags:
     - docker
