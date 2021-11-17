@@ -108,9 +108,9 @@ notify-matrixbot:
   stages: .post
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"' 
+      when: always
   script: 
     - apt-get install -y wget
     - wget $nk_ci_bot_server/matrix-ci-bot/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
-  when: always
 
 
