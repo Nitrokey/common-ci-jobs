@@ -58,7 +58,7 @@ notify-matrixbot-fail:
     - if: '$CI_PIPELINE_SOURCE == "schedule"' 
       when: on_failure
   script: 
-    - wget $nk_ci_bot_server/matrix-ci-bot/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/failed/${CI_JOB_URL#*/*/*/}
+    - wget $nk_ci_bot_server/matrix-ci-bot/$CI_PROJECT_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/failed/${CI_PIPELINE_URL#*/*/*/}
 
 notify-matrixbot-success:
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release:latest
@@ -69,7 +69,7 @@ notify-matrixbot-success:
     - if: '$CI_PIPELINE_SOURCE == "schedule"' 
       when: on_success
   script: 
-    - wget $nk_ci_bot_server/matrix-ci-bot/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/success/${CI_JOB_URL#*/*/*/}
+    - wget $nk_ci_bot_server/matrix-ci-bot/$CI_PROJECT_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/success/${CI_PIPELINE_URL#*/*/*/}
 
 
 github-release-sha:
