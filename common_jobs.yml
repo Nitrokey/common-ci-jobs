@@ -72,6 +72,7 @@ notify-matrixbot-success:
     - wget $nk_ci_bot_server/matrix-ci-bot/$CI_PROJECT_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/success/${CI_PIPELINE_URL#*/*/*/}
 
 #foo
+#baar
 github-release:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web" && $COMMON_GITHUB_RELEASE == "true"'
