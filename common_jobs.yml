@@ -1,4 +1,4 @@
-variables:
+@:latestvariables:
   GIT_STRATEGY: clone     #This seems to have no effect also set in webinterface
   GIT_DEPTH: 0          #This seems to have no effect also set in webinterface
   GIT_SUBMODULE_STRATEGY: recursive
@@ -71,11 +71,11 @@ notify-matrixbot-success:
   script: 
     - wget $nk_ci_bot_server/matrix-ci-bot/$CI_PROJECT_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/success/${CI_PIPELINE_URL#*/*/*/}
 
-
-github-release-sha:
+#foo
+github-release:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web" && $COMMON_GITHUB_RELEASE == "true"'
-  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-publish-git@:latest
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-publish-git:latest
   tags:
     - docker
   stage: deploy
