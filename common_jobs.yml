@@ -1,4 +1,4 @@
-@:latestvariables:
+variables:
   GIT_STRATEGY: clone     #This seems to have no effect also set in webinterface
   GIT_DEPTH: 0          #This seems to have no effect also set in webinterface
   GIT_SUBMODULE_STRATEGY: recursive
@@ -11,7 +11,7 @@
   COMMON_UPDATE_DOCKER: "false"
 
 
-pull-sha:
+pull:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH && $COMMON_PULL == "true"'
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-pull:latest
@@ -91,7 +91,7 @@ github-release:
     - chmod +x $SCRIPTS_DIR/ci-scripts/release.sh
     - $SCRIPTS_DIR/ci-scripts/release.sh
 
-upload-files-sha:
+upload-files:
   image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $COMMON_UPLOAD_FILES == "true"'
