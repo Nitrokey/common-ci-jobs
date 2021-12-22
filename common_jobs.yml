@@ -119,9 +119,9 @@ update-docker:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPDATE_DOCKER == "true"'
   script:
-    - docker build -t registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME . 
-    - docker login registry.git.dotplex.com -u token -p $UPDATE_DOCKER
-    - docker push registry.git.dotplex.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME 
+    - docker build -t registry.git.nitrokey.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME . 
+    - docker login registry.git.nitrokey.com -u token -p $UPDATE_DOCKER
+    - docker push registry.git.nitrokey.com/$REPO_USER/$REPO_NAME/$IMAGE_NAME 
 
 
 
