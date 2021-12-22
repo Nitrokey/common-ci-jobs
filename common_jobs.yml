@@ -44,6 +44,7 @@ upload-nightly:
     - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
     - chmod 600 ~/.ssh/common_scripts_key
     - export SCRIPTS_DIR=$(mktemp -d)
+    - sleep 3h
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
   script:
     - chmod +x $SCRIPTS_DIR/ci-scripts/nightly_upload.sh
@@ -71,8 +72,6 @@ notify-matrixbot-success:
   script: 
     - wget $nk_ci_bot_server/matrix-ci-bot/$CI_PROJECT_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/success/${CI_PIPELINE_URL#*/*/*/}
 
-#foo
-#baar
 github-release:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "web" && $COMMON_GITHUB_RELEASE == "true"'
@@ -112,7 +111,7 @@ upload-files:
     - $SCRIPTS_DIR/ci-scripts/oem-release.sh
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
-update-docker-foo:
+update-docker:
   tags:
     - lxc
   stage: .pre
