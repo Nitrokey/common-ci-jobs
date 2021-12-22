@@ -30,7 +30,7 @@ pull:
     - chmod +x  $SCRIPTS_DIR/ci-scripts/pull.sh
     - $SCRIPTS_DIR/ci-scripts/pull.sh $REPO_USER $REPO_NAME
      
-upload-nightly:
+upload-nightly-foo:
   stage: deploy
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPLOAD_NIGHTLY == "true"'
