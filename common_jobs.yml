@@ -30,7 +30,7 @@ pull:
     - chmod +x  $SCRIPTS_DIR/ci-scripts/pull.sh
     - $SCRIPTS_DIR/ci-scripts/pull.sh $REPO_USER $REPO_NAME
      
-upload-nightly-foo:
+upload-nightly:
   stage: deploy
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPLOAD_NIGHTLY == "true"'
@@ -44,7 +44,6 @@ upload-nightly-foo:
     - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
     - chmod 600 ~/.ssh/common_scripts_key
     - export SCRIPTS_DIR=$(mktemp -d)
-    - sleep 3h
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
   script:
     - chmod +x $SCRIPTS_DIR/ci-scripts/nightly_upload.sh
