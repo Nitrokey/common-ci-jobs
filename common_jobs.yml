@@ -10,8 +10,6 @@ variables:
   COMMON_UPLOAD_FILES: "false"
   COMMON_UPDATE_DOCKER: "false"
 
-#foo
-#foo
 pull:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH && $COMMON_PULL == "true"'
