@@ -3,7 +3,7 @@ variables:
   GIT_DEPTH: 0          #This seems to have no effect also set in webinterface
   GIT_SUBMODULE_STRATEGY: recursive
   SCRIPTS_REPO: git@git.nitrokey.com:nitrokey/gitlab-ci.git
-  REPO_USER: nitrokey
+  REPO_GROUP: nitrokey
   COMMON_PULL: "true"
   COMMON_UPLOAD_NIGHTLY: "true"
   COMMON_GITHUB_RELEASE: "true"
