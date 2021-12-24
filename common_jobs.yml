@@ -10,8 +10,9 @@ variables:
   COMMON_UPLOAD_FILES: "false"
   COMMON_UPDATE_DOCKER: "false"
 
-
-pull:
+#foo
+#foo
+pull-fooo:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH && $COMMON_PULL == "true"'
   image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-pull:latest
