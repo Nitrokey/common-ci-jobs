@@ -12,7 +12,7 @@ variables:
 
 #foo
 #foo
-pull-fooo:
+pull:
   rules: 
     - if: '$CI_PIPELINE_SOURCE == "trigger" && $CI_COMMIT_BRANCH == $MAIN_BRANCH && $COMMON_PULL == "true"'
   image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-pull:latest
@@ -29,7 +29,7 @@ pull-fooo:
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
   script:
     - chmod +x  $SCRIPTS_DIR/ci-scripts/pull.sh
-    - $SCRIPTS_DIR/ci-scripts/pull.sh $REPO_GOUP $REPO_NAME
+    - $SCRIPTS_DIR/ci-scripts/pull.sh $REPO_GROUP $REPO_NAME
      
 upload-nightly:
   stage: deploy
@@ -118,9 +118,9 @@ update-docker:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $COMMON_UPDATE_DOCKER == "true"'
   script:
-    - docker build -t registry.git.nitrokey.com/$REPO_GOUP/$REPO_NAME/$IMAGE_NAME . 
+    - docker build -t registry.git.nitrokey.com/$REPO_GROUP/$REPO_NAME/$IMAGE_NAME . 
     - docker login registry.git.nitrokey.com -u token -p $UPDATE_DOCKER
-    - docker push registry.git.nitrokey.com/$REPO_GOUP/$REPO_NAME/$IMAGE_NAME 
+    - docker push registry.git.nitrokey.com/$REPO_GROUP/$REPO_NAME/$IMAGE_NAME 
 
 
 
