@@ -113,7 +113,7 @@ upload-files:
 upload-oem-files:
   image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $COMMON_UPLOAD_FILES == "true"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $COMMON_UPLOAD_OEM_FILES == "true"'
   tags:
     - docker
   stage: deploy
