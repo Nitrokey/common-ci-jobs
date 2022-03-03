@@ -9,6 +9,7 @@ variables:
   COMMON_GITHUB_RELEASE: "true"
   COMMON_UPLOAD_FILES: "false"
   COMMON_UPDATE_DOCKER: "false"
+  COMMON_UPLOAD_OEM_FILES: "false"
 
 pull:
   rules: 
