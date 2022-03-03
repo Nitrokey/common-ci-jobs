@@ -104,7 +104,6 @@ upload-files:
     - export SCRIPTS_DIR=$(mktemp -d)
     - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
   script:
-    - echo new_common
     - chmod +x $SCRIPTS_DIR/ci-scripts/oem-release.sh
     - $SCRIPTS_DIR/ci-scripts/oem-release.sh
   after_script:
