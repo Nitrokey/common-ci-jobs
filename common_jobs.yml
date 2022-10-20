@@ -143,4 +143,17 @@ update-docker:
     - docker push registry.git.nitrokey.com/$REPO_GROUP/$REPO_NAME/$IMAGE_NAME 
 
 
+hash-artifacts:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+  image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-publish-git:latest
+  tags:
+    - docker
+  stage: hash
+  script:
+    - cd artifacts
+    - sha256sum * | tee sha256sum
+
+
 
